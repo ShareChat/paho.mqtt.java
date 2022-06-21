@@ -1,29 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.eclipse.paho</groupId>
-        <artifactId>java-parent</artifactId>
-        <version>1.2.5</version>
-    </parent>
 
-    <artifactId>org.eclipse.paho.client.mqttv3</artifactId>
-    <packaging>eclipse-plugin</packaging>
+    <groupId>in.mohalla.paho</groupId>
+    <artifactId>in.mohalla.paho.client.mqttv3</artifactId>
 
+    <scm>
+        <url>https://github.com/ShareChat/paho.mqtt.java.git</url>
+        <connection>scm:git:git@github.com:ShareChat/paho.mqtt.java.git</connection>
+    </scm>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>ShareChatPackages</name>
+            <url>https://maven.pkg.github.com/ShareChat/paho.mqtt.java</url>
+        </repository>
+    </distributionManagement>
+
+    <properties>
+        <maven.compiler.target>1.9</maven.compiler.target>
+        <maven.compiler.source>1.9</maven.compiler.source>
+    </properties>
     <build>
         <plugins>
             <plugin>
-                 <groupId>org.jacoco</groupId>
-                      <artifactId>jacoco-maven-plugin</artifactId>
-                    <version>${jacoco.version}</version>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>prepare-agent</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.2</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.eclipse.tycho</groupId>
                 <artifactId>tycho-maven-plugin</artifactId>
@@ -68,37 +80,37 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.eclipse.tycho</groupId>
-                <artifactId>tycho-compiler-plugin</artifactId>
-                <version>${tycho.version}</version>
-                <configuration>
-                    <source>${mqttclient.java.version}</source>
-                    <target>${mqttclient.java.version}</target>
-                </configuration>
-            </plugin>
-                 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>${javadoc.version}</version>
-                <executions>
-                    <execution>
-                        <id>attach-javadocs</id>
-                        <goals>
-                            <goal>javadoc-no-fork</goal>
-                            <goal>jar</goal>
-                        </goals>
-                        <configuration>
-                            <additionalparam>${javadoc.opts}</additionalparam>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+            <!--            <plugin>-->
+            <!--                <groupId>org.eclipse.tycho</groupId>-->
+            <!--                <artifactId>tycho-compiler-plugin</artifactId>-->
+            <!--                <version>${tycho.version}</version>-->
+            <!--                <configuration>-->
+            <!--                    <source>${mqttclient.java.version}</source>-->
+            <!--                    <target>${mqttclient.java.version}</target>-->
+            <!--                </configuration>-->
+            <!--            </plugin>-->
+
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-javadoc-plugin</artifactId>-->
+<!--                <version>0.8.2</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>attach-javadocs</id>-->
+<!--                        <goals>-->
+<!--                            <goal>javadoc-no-fork</goal>-->
+<!--                            <goal>jar</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <additionalparam>${javadoc.opts}</additionalparam>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
         </plugins>
-        
+
         <pluginManagement>
-            <plugins> 
+            <plugins>
                 <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
                 <plugin>
                     <groupId>org.eclipse.m2e</groupId>

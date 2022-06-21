@@ -29,6 +29,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
 import javax.net.SocketFactory;
+import org.eclipse.paho.client.mqttv3.internal.wire.MqttWireMessage;
 import org.eclipse.paho.client.mqttv3.internal.ClientComms;
 import org.eclipse.paho.client.mqttv3.internal.ConnectActionListener;
 import org.eclipse.paho.client.mqttv3.internal.DisconnectedMessageBuffer;
@@ -1625,6 +1626,10 @@ public class MqttAsyncClient implements IMqttAsyncClient {
 	 */
 	public Debug getDebug() {
 		return new Debug(clientId, comms);
+	}
+
+	public void sendNoWait(MqttWireMessage message, MqttToken token) throws MqttException {
+		this.comms.sendNoWait(message, token);
 	}
 
 }

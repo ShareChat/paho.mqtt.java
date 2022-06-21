@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.eclipse.paho</groupId>
         <artifactId>java-parent</artifactId>
-        <version>1.2.5</version>
+        <version>1.2.5.send-no-wait-exposed</version>
     </parent>
 
     <artifactId>org.eclipse.paho.mqttv5.client</artifactId>
@@ -62,7 +62,7 @@
                     <dependency>
                         <groupId>org.eclipse.paho</groupId>
                         <artifactId>org.eclipse.paho.mqttv5.common</artifactId>
-                        <version>1.2.5</version>
+                        <version>1.2.5.send-no-wait-exposed</version>
                     </dependency>
                 </dependencies>
             </plugin>
@@ -162,7 +162,7 @@ aven build itself.-->
             </plugins>
         </pluginManagement>
     </build>
-    <version>1.2.5</version>
+    <version>1.2.5.send-no-wait-exposed</version>
 </project>
 
 
