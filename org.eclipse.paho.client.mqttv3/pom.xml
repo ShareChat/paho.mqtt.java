@@ -145,6 +145,6 @@
             </plugins>
         </pluginManagement>
     </build>
-    <version>1.2.6.send-no-wait-exposed</version>
+    <version>1.2.7.timer-ping-sender</version>
 </project>
 
