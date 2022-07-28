@@ -18,6 +18,7 @@
  */
 package org.eclipse.paho.client.mqttv3.internal;
 
+import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Vector;
@@ -33,10 +34,7 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.MqttToken;
 import org.eclipse.paho.client.mqttv3.MqttTopic;
-import org.eclipse.paho.client.mqttv3.internal.wire.MqttPubAck;
-import org.eclipse.paho.client.mqttv3.internal.wire.MqttPubComp;
-import org.eclipse.paho.client.mqttv3.internal.wire.MqttPublish;
-import org.eclipse.paho.client.mqttv3.internal.wire.MqttWireMessage;
+import org.eclipse.paho.client.mqttv3.internal.wire.*;
 import org.eclipse.paho.client.mqttv3.logging.Logger;
 import org.eclipse.paho.client.mqttv3.logging.LoggerFactory;
 
@@ -326,7 +324,14 @@ public class CommsCallback implements Runnable {
 		if (token != null) {
 			IMqttActionListener asyncCB = token.getActionCallback();
 			if (asyncCB != null) {
-				if (token.getException() == null) {
+				if (
+						token.getResponse() instanceof MqttSuback &&
+								Arrays.stream(((MqttSuback) token.getResponse()).getGrantedQos()).anyMatch(argument -> argument == 128)
+				) {
+					log.fine(CLASS_NAME, methodName, "716",
+							new Object[] { token.internalTok.getKey() });
+					asyncCB.onFailure(token, new IllegalStateException("the mqtt subscription failed"));
+				} else if (token.getException() == null) {
 					// @TRACE 716=call onSuccess key={0}
 					log.fine(CLASS_NAME, methodName, "716",
 							new Object[] { token.internalTok.getKey() });
