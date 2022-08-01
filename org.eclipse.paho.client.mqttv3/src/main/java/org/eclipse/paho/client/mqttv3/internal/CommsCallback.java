@@ -326,7 +326,7 @@ public class CommsCallback implements Runnable {
 			if (asyncCB != null) {
 				if (
 						token.getResponse() instanceof MqttSuback &&
-								Arrays.stream(((MqttSuback) token.getResponse()).getGrantedQos()).anyMatch(argument -> argument == 128)
+						Arrays.stream(((MqttSuback) token.getResponse()).getGrantedQos()).anyMatch(argument -> argument == 128)
 				) {
 					log.fine(CLASS_NAME, methodName, "716",
 							new Object[] { token.internalTok.getKey() });
