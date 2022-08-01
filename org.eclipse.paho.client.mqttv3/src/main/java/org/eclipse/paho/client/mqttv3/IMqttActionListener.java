@@ -1,5 +1,7 @@
 package org.eclipse.paho.client.mqttv3;
 
+import java.util.List;
+
 /**
  * Implementors of this interface will be notified when an asynchronous action completes.
  * 
@@ -27,4 +29,8 @@ public interface IMqttActionListener {
 	 * @param exception thrown by the action that has failed
 	 */
     void onFailure(IMqttToken asyncActionToken, Throwable exception);
+
+	default void onSubscribeResult(List<String> successTopics, List<String> failedTopics) {
+		return;
+	}
 }
